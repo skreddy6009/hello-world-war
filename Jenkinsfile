@@ -12,7 +12,7 @@ pipeline {
      stage('docker build'){ 
     steps{ 
       script{ 
-        sh "docker build -t application:v3 ." 
+        sh "docker build -t application:${BUILD_NUMBER} ." 
       }
     }
   } 
@@ -21,7 +21,7 @@ pipeline {
       script{ 
         sh "docker stop saty3"
         sh "docker rm saty3"
-        sh "docker run -itd --name saty3 -p 9000:8080 application:v3" 
+        sh "docker run -itd --name saty3 -p 9000:8080 application:${BUILD_NUMBER}" 
       }
     }
   }  
