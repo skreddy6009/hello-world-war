@@ -18,7 +18,16 @@ pipeline {
   } 
      stage('docker container'){ 
     steps{ 
-      script{ 
+      script{  
+        def userInput = input(
+                        id: 'UserInput', message: 'Do you approve to proceed?', parameters: [
+                            choice(choices: ['Yes', 'No'], description: 'Proceed?', name: 'Proceed')
+                        ], 
+                        timeout: 30, 
+                        timeoutMessage: 'Timeout reached, proceeding without input.'
+                    )
+                    
+                    echo "User input received: ${userInput['Proceed']}"
         sh "docker stop saty3"
         sh "docker rm saty3"
         sh "docker run -itd --name saty3 -p 9000:8080 application:${BUILD_NUMBER}" 
