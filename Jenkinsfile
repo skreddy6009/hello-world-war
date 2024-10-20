@@ -26,4 +26,10 @@ pipeline {
     }
   }  
   } 
+post {
+        always {
+            echo 'Cleaning up workspace...'
+            cleanWs()  // This cleans the workspace at the end of the pipeline
+        }
+    }
 }
