@@ -19,9 +19,9 @@ pipeline {
      stage('docker container'){ 
     steps{ 
       script{ 
-        sh "docker stop satya3"
-        sh "docker rm satya3"
-        sh "docker run -itd --name saty3 -p 9000:8080 application:v3 " 
+        sh "docker stop  saty3"
+        sh "docker rm saty3"
+        sh "docker run -itd --name saty3 -p 9000:8080 application:v3" 
       }
     }
   }  
