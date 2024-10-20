@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Hello World!</title>
+<title>Hello bangulor</title>
 </head>
 <body>
 	<h1>devops traning</h1>
