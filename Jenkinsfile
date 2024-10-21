@@ -27,11 +27,9 @@ stage('Deploy') {
             }
              steps { 
              script{ 
-                echo "Deploy"  
-               """ 
-              
-                docker run -itd --name saty3 -p 9000:8080 application:${BUILD_NUMBER} 
-                """
+                echo "Deploy"              
+                sh "docker run -itd --name saty3 -p 9000:8080 application:${BUILD_NUMBER}" 
+                
         } 
       } 
     }  
