@@ -28,9 +28,8 @@ stage('Deploy') {
              steps { 
              script{ 
                 echo "Deploy" 
-               docker stop saty3 || true 
-               
-               docker rm saty3 || true
+               sh "docker stop saty3 || true"
+               sh "docker rm saty3 || true"
 
                 sh "docker run -itd --name saty3 -p 9000:8080 application:${BUILD_NUMBER}"    
         } 
