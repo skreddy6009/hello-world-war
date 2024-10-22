@@ -30,7 +30,7 @@ stage('Deploy') {
                 echo "Deploy"  
                sh "docker stop saty3"
                sh "docker rm saty3"
-                sh "docker run -itd --name saty3 -p 9000:9000 application:${BUILD_NUMBER}" 
+                sh "docker run -itd --name saty3 -p 9000:8080 application:${BUILD_NUMBER}" 
                 
         } 
       } 
