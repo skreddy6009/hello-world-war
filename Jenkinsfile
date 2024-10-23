@@ -12,7 +12,7 @@ pipeline {
      stage('docker build'){ 
     steps{ 
       script{ 
-        sh "docker build -t sudhakar24/devops/application:${BUILD_NUMBER} ." 
+        sh "docker build -t sudhakar24/devops:${BUILD_NUMBER} ." 
       }
     }
   } 
@@ -21,7 +21,7 @@ pipeline {
       script{ 
         withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                         sh "echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin" 
-                        sh "docker push sudhakar24/devops/application:${BUILD_NUMBER}"
+                        sh "docker push sudhakar24/devops:${BUILD_NUMBER}"
        }
       }
     }
@@ -39,7 +39,7 @@ stage('Deploy') {
                 echo "Deploy"  
                //sh "docker stop saty3"
               // sh "docker rm saty3"
-                sh "docker run -itd --name satya3 -p 9000:8080 sudhakar24/devops/application:${BUILD_NUMBER}" 
+                sh "docker run -itd --name satya3 -p 9000:8080 sudhakar24/devops:${BUILD_NUMBER}" 
                 
         } 
       } 
