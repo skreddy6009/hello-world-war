@@ -1,6 +1,6 @@
 //add 
 pipeline { 
-  agent { label 'slave1' } 
+  agent any
   stages{ 
   stage('generte package'){ 
     steps{ 
