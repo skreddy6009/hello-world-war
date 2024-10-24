@@ -2,6 +2,27 @@
 pipeline { 
   agent any
   stages{ 
+    stage('maven compile'){ 
+    steps{ 
+      script{ 
+        sh "mvn compile" 
+      }
+    }
+  } 
+    stage('maven validate'){ 
+    steps{ 
+      script{ 
+        sh "mvn validate" 
+      }
+    }
+  } 
+    stage('maven test'){ 
+    steps{ 
+      script{ 
+        sh "mvn test" 
+      }
+    }
+  } 
   stage('generte package'){ 
     steps{ 
       script{ 
