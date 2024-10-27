@@ -31,10 +31,10 @@ pipeline {
       }
     }
   } 
-  /*stage ("sonar analysis") {
+  stage ("sonar analysis") {
       steps {
         script {
-          withSonarQubeEnv(SONARQUBE_SERVER) {
+          withSonarQubeEnv('sonar') {
               sh "mvn sonar:sonar -Dsonar.projectKey=java-hello"
           }
         }
@@ -46,7 +46,7 @@ pipeline {
            sh "mvn deploy"
         }
       }
-    }*/
+    }
     stage ("docker build") {
     steps{ 
       script{ 
@@ -54,7 +54,7 @@ pipeline {
       }
     }
   } 
-    stage('docker image pushing'){ 
+    /*stage('docker image pushing'){ 
     steps{ 
       script{ 
         withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
@@ -63,7 +63,7 @@ pipeline {
        }
       }
     }
-  } 
+  }*/
 stage('Deploy') {
             input {
                 message 'Do you want to deploy to production?'
