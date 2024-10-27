@@ -1,6 +1,10 @@
 //add 
 pipeline { 
-  agent any
+  agent { label "docker-slave"}
+
+  tools {
+    maven 'maven'
+  }
   stages{ 
     stage('maven compile'){ 
     steps{ 
@@ -30,10 +34,26 @@ pipeline {
       }
     }
   } 
-     stage('docker build'){ 
+  stage ("sonar analysis") {
+      steps {
+        script {
+          withSonarQubeEnv(SONARQUBE_SERVER) {
+              sh "mvn sonar:sonar -Dsonar.projectKey=java-hello"
+          }
+        }
+      }
+    }
+    stage ("nexus war file push") {
+      steps {
+        script {
+           sh "mvn deploy"
+        }
+      }
+    }
+    stage ("docker build") {
     steps{ 
       script{ 
-        sh "docker build -t sudhakar24/devops:${BUILD_NUMBER} ." 
+        sh "docker build -t skreddy6009/devops:${BUILD_NUMBER} ." 
       }
     }
   } 
@@ -42,7 +62,7 @@ pipeline {
       script{ 
         withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                         sh "echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin" 
-                        sh "docker push sudhakar24/devops:${BUILD_NUMBER}"
+                        sh "docker push skreddy6009/devops:${BUILD_NUMBER}"
        }
       }
     }
