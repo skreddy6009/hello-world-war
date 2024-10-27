@@ -1,10 +1,7 @@
 //add 
 pipeline { 
-  agent { label "docker-slave"}
-
-  tools {
-    maven 'maven'
-  }
+ //agent { label "docker-slave"}
+  agent any
   stages{ 
     stage('maven compile'){ 
     steps{ 
@@ -34,7 +31,7 @@ pipeline {
       }
     }
   } 
-  stage ("sonar analysis") {
+  /*stage ("sonar analysis") {
       steps {
         script {
           withSonarQubeEnv(SONARQUBE_SERVER) {
@@ -49,7 +46,7 @@ pipeline {
            sh "mvn deploy"
         }
       }
-    }
+    }*/
     stage ("docker build") {
     steps{ 
       script{ 
