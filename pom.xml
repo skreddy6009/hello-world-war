@@ -25,5 +25,17 @@
 			</plugin>
 		</plugins>
 	</build>
+	<distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>Internal Releases</name>
+            <url>http://54.174.118.3:8081/repository/maven-release</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Internal Snapshots</name>
+            <url>http://54.174.118.3:8081/repository/maven-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
