@@ -1,7 +1,6 @@
 //add 
 pipeline { 
- //agent { label "docker-slave"}
-  agent any
+  agent { label "docker-slave"}
   stages{ 
     stage('maven compile'){ 
     steps{ 
