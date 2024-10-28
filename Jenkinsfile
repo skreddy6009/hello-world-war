@@ -74,8 +74,8 @@ stage('Deploy') {
              steps { 
              script{ 
                 echo "Deploy"  
-               //sh "docker stop satya3"
-               //sh "docker rm satya3"
+               sh "docker stop satya3"
+               sh "docker rm satya3"
                 sh "docker run -itd --name satya3 -p 9000:8080 skreddy6009/devops:${BUILD_NUMBER}" 
                 
         } 
